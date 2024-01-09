@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+<script src="https://kit.fontawesome.com/8dbc0a0d7f.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<h2>Sign up & Login</h2>
+
 <img src="assets/images/backgroundlogin.jpg" alt="">
-<form >
-  <div class="imgcontainer">
-  </div>
+<div class="container">
+  <h2>Sign up</h2>
+      <form id="signupForm">
+        <div class="imgcontainer">
+        </div>
 
-  <div class="container">
-    <label for="uname"><b>Email ID</b></label>
-    <input type="text" placeholder="Enter Email ID" name="uname" required>
+        <div class="container1">
+          <i class="fa-solid fa-user"></i>
+          <!--<label for="uname"><b>User Name</b></label>-->
+          <input type="text" placeholder="Enter Email ID" name="uname" id="uname" required>
+        </div>
+        <div class="container1">
+          <i class="fa-solid fa-envelope"></i>
+          <!--<label for="email"><b>Email:</b></label>-->
+          <input type="email" placeholder="Enter Email ID" name="uname" id="email" required>
+        </div>
+        <div class="container1">
+          <i class="fa-solid fa-lock"></i>
+          <!--<label for="psw"><b>Password</b></label>-->
+          <input type="password" placeholder="Enter Password" name="psw"  id="psw"required>
+        </div>        
+        <div class="container1">
+          <button type="submit">Sign Up</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        </div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      </form>
+</div>
+<script>
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
+      // Fetch user input
+      const uname = document.getElementById('uname').value;
+      const email = document.getElementById('email').value;
+      const psw = document.getElementById('psw').value;
+
+      // Send the data to the server
+      fetch('/signup', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ uname, email, psw }),
+      })
+      .then(response => response.json())
+      .then(data => {
+          alert('User signed up successfully!');
+          // Redirect or perform other actions as needed
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred during sign-up.');
+      });
+  });
+</script>
+<script src="assets/js/login.js" charset="UDF-8"></script>
 
 </body>
 </html>
