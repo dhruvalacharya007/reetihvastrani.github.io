@@ -410,7 +410,7 @@ header
   height: 40px;
   text-indent: -9999em;
   z-index: 99;
-  right: 40px;
+  right: 10px;
   display: none;
 }
 
@@ -540,7 +540,7 @@ header
 
 @media (max-width: 767px) {
   .header-area .main-nav .logo {
-    color: #1e1e1e;
+    color: #011add;
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
